@@ -46,6 +46,8 @@ jobs:
       steps:
         - name: Check out the repo
           uses: actions/checkout@v2
+          with:
+             fetch-depth: 0
         - name: Semantic versioning
           id: versioning
           uses: PaulHatch/semantic-version@v4.0.2
