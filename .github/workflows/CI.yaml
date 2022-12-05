@@ -79,4 +79,5 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           repository: ${{ secrets.DOCKERHUB_REPOSITORY }}
           tag_with_sha: true
-          tags: ${{ steps.versioning.outputs.version }}
+          tags: latest, ${{ create_version.steps.versioning.outputs.version }}
+          
