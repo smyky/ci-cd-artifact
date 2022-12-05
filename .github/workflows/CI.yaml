@@ -44,6 +44,8 @@ jobs:
       needs: [build]
       runs-on: ubuntu-latest
       steps:
+        - name: Check out the repo
+          uses: actions/checkout@v2
         - name: Semantic versioning
           id: versioning
           uses: PaulHatch/semantic-version@v4.0.2
