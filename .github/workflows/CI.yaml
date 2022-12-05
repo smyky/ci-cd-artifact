@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - 'main'
-      - 'release'
+      - '*'
 
 jobs:
   # Run code tests before building the image, to ensure it is good to go
@@ -40,7 +40,7 @@ jobs:
         python -m unittest discover
   create_version:
       name: Create version and release
-      if: github.ref == 'refs/heads/release'
+      if: github.ref == 'refs/heads/main'
       needs: [build]
       runs-on: ubuntu-latest
       steps:
@@ -65,7 +65,7 @@ jobs:
 # Build and push the Docker image
   push_to_registry:
     name: Build and push Docker image to Docker Hub
-    if: github.ref == 'refs/heads/release'
+    if: github.ref == 'refs/heads/main'
     needs: [create_version]
     runs-on: ubuntu-latest
     steps:
