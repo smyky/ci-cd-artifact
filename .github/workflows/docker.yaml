@@ -1,16 +1,12 @@
-# Article: https://medium.com/rockedscience/docker-ci-cd-pipeline-with-github-actions-6d4cd1731030
-name: Lint the code, run tests, build and push Docker image
+name: Lint the code, run tests, create release, build and push to Docker repo
 
 on:
-  push:
-    branches:
-      - '*'
   pull_request:
     branches:
-      - '**'
+      - 'release'
   release:
     types: [published, edited]
-
+    
 jobs:
   # Run code tests before building the image, to ensure it is good to go
   build:
@@ -43,6 +39,15 @@ jobs:
     - name: Test with unittest
       run: |
         python -m unittest discover
+  create_release:
+    - name: Semantic versioning
+      id: versioning
+      uses: PaulHatch/semantic-version@v4.0.2
+      with:
+        branch: release
+        major_pattern: "CHANGE:"
+        minor_pattern: "feat:"
+        format: "${major}.${minor}.${patch}"
 
 # Build and push the Docker image
   push_to_registry:
