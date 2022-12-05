@@ -1,7 +1,7 @@
 name: Lint the code, run tests, create release, build and push to Docker repo
 
 on:
-  pull_request:
+  push:
     branches:
       - 'release'
   release:
