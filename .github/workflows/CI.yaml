@@ -41,6 +41,7 @@ jobs:
   create_version:
       name: Create version and release
       if: github.ref == 'refs/heads/release'
+      needs: [build]
       runs-on: ubuntu-latest
       steps:
         - name: Semantic versioning
@@ -63,6 +64,7 @@ jobs:
   push_to_registry:
     name: Build and push Docker image to Docker Hub
     if: github.ref == 'refs/heads/release'
+    needs: [create_version]
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
