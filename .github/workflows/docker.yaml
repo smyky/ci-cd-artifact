@@ -48,6 +48,13 @@ jobs:
         major_pattern: "CHANGE:"
         minor_pattern: "feat:"
         format: "${major}.${minor}.${patch}"
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.github_token }}
+      with:
+        tag_name: ${{ steps.versioning.outputs.version }}
+        release_name: ${{ steps.versioning.outputs.version }}
 
 # Build and push the Docker image
   push_to_registry:
