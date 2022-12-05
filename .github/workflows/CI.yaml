@@ -3,9 +3,8 @@ name: Lint the code, run tests, create release, build and push to Docker repo
 on:
   push:
     branches:
+      - 'main'
       - 'release'
-  release:
-    types: [published, edited]
 
 jobs:
   # Run code tests before building the image, to ensure it is good to go
@@ -39,28 +38,31 @@ jobs:
     - name: Test with unittest
       run: |
         python -m unittest discover
-
-    - name: Semantic versioning
-      id: versioning
-      uses: PaulHatch/semantic-version@v4.0.2
-      with:
-        branch: release
-        major_pattern: "CHANGE:"
-        minor_pattern: "feat:"
-        format: "${major}.${minor}.${patch}"
-    - name: Create Release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.github_token }}
-      with:
-        tag_name: ${{ steps.versioning.outputs.version }}
-        release_name: ${{ steps.versioning.outputs.version }}
+  create_version:
+      name: Create version and release
+      if: github.ref == 'refs/heads/release'
+      runs-on: ubuntu-latest
+      steps:
+        - name: Semantic versioning
+          id: versioning
+          uses: PaulHatch/semantic-version@v4.0.2
+          with:
+            branch: release
+            major_pattern: "CHANGE:"
+            minor_pattern: "feat:"
+            format: "${major}.${minor}.${patch}"
+        - name: Create Release
+          uses: actions/create-release@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.github_token }}
+          with:
+            tag_name: ${{ steps.versioning.outputs.version }}
+            release_name: ${{ steps.versioning.outputs.version }}
 
 # Build and push the Docker image
   push_to_registry:
     name: Build and push Docker image to Docker Hub
-    # ...but only when a `release` is `published` (combined with `on`)
-    if: github.event_name == 'release'
+    if: github.ref == 'refs/heads/release'
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
