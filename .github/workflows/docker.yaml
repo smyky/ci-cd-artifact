@@ -6,11 +6,11 @@ on:
       - 'release'
   release:
     types: [published, edited]
-    
+
 jobs:
   # Run code tests before building the image, to ensure it is good to go
   build:
-    name: Run code tests
+    name: Run code tests and create version
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -39,7 +39,7 @@ jobs:
     - name: Test with unittest
       run: |
         python -m unittest discover
-  create_release:
+
     - name: Semantic versioning
       id: versioning
       uses: PaulHatch/semantic-version@v4.0.2
