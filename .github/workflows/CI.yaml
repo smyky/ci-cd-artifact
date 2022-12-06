@@ -92,7 +92,9 @@ jobs:
           with:
             server_address: smtp.gmail.com
             server_port: 465
-            subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
-            body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
+            username: ${{ secrets.EMAIL_USERNAME }}
+            password: ${{ secrets.EMAIL_PASSWORD }}
+            subject: CI/CD job status - ${{ job.status }}
+            html_body: file://email/template
             to: aws1sofiiamyk@gmail.com 
             from: Sofiia Myk
