@@ -82,7 +82,7 @@ jobs:
           uses: researchsquare/run-ecs-task-action@v1
           with:
             task-definition: arn:aws:ecs:us-east-1:048558755265:task-definition/ci-cd
-            service: ci-cd-task
+            count: 1
             cluster: ci-cd-cluster-smyky
             wait-for-service-stability: true
             uses: aws-actions/amazon-ecs-deploy-task-definition@v1
