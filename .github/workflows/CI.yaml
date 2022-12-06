@@ -81,8 +81,9 @@ jobs:
         - name: Run ECS Task
           uses: researchsquare/run-ecs-task-action@v1
           with:
-            task-definition: arn:aws:ecs:us-east-1:048558755265:task-definition/ci-cd
+            task-definition-arn: arn:aws:ecs:us-east-1:048558755265:task-definition/ci-cd
             count: 1
             cluster: ci-cd-cluster-smyky
-            wait-for-service-stability: true
+            wait-for-task-completion: true
+            overrides: true
             uses: aws-actions/amazon-ecs-deploy-task-definition@v1
