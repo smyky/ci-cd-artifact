@@ -3,7 +3,7 @@ name: Lint the code, run tests, create release, build and push to Docker repo
 on:
   push:
     branches:
-      - 'main'
+      - 'master'
       - '*'
 
 jobs:
@@ -40,7 +40,7 @@ jobs:
         python -m unittest discover
   create_version:
       name: Create release and push
-      if: github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/master'
       needs: [build]
       runs-on: ubuntu-latest
       steps:
@@ -59,7 +59,7 @@ jobs:
           working-directory: ./.github/workflows
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            GIT_AUTHOR_NAME: enter author name
+            GIT_AUTHOR_NAME: Sofiia
             GIT_AUTHOR_EMAIL: smyky
             GIT_COMMITTER_NAME: smyky
             GIT_COMMITTER_EMAIL: sofiiamyk
