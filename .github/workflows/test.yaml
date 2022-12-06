@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Hello World
         run: echo Hello, world!
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Send email
         uses: dawidd6/action-send-mail@v3.7.1
         with:
@@ -20,6 +22,6 @@ jobs:
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
           #body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
-          html_body: email/template
+          html_body: file://email/template
           to: aws1sofiiamyk@gmail.com 
           from: Sofiia Myk
