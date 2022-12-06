@@ -7,8 +7,6 @@ on:
 jobs:
   send_email: 
     name: Send email
-    if: always()
-    needs: [build,create_version]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
