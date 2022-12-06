@@ -81,7 +81,7 @@ jobs:
         - name: Deploy Amazon ECS task definition
           uses: aws-actions/amazon-ecs-deploy-task-definition@v1
           with:
-            task-definition: arn:aws:ecs:us-east-1:048558755265:task-definition/ci-cd
+            task-definition: task-definition/ci-cd.json
             service: ci-cd-task
             cluster: ci-cd-cluster-smyky
             wait-for-service-stability: true
