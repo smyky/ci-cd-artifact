@@ -1,5 +1,4 @@
-[![CI/CD workflow](https://github.com/smyky/ci-cd-artifact/actions/workflows/CI.yaml/badge.svg?event=status)](https://github.com/smyky/ci-cd-artifact/actions/workflows/CI.yaml)
-
+[![CI/CD workflow](https://github.com/smyky/ci-cd-artifact/actions/workflows/CI.yaml/badge.svg)](https://github.com/smyky/ci-cd-artifact/actions/workflows/CI.yaml)
 # CD/CI Tutorial Sample Application
 
 ## CI/CD workflow
