@@ -53,9 +53,9 @@ jobs:
           with:
             node-version: 16
         - name: Add plugin to analyze commits
-          run: npm install semantic-release/analyzeCommits
+          run: npm install analyzeCommits
         - name: Verify release
-          run: npm install semantic-release/verifyRelease
+          run: npm install verifyRelease
         - name: Publish
           run: npm install semantic-release/publish
 #         - name: Add plugin for conventional commits
