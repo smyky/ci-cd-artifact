@@ -86,4 +86,3 @@ jobs:
             cluster: ci-cd-cluster-smyky
             wait-for-task-completion: true
             overrides: true
-            uses: aws-actions/amazon-ecs-deploy-task-definition@v1
