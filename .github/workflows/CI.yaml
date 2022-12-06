@@ -85,9 +85,8 @@ jobs:
             cluster: ci-cd-cluster-smyky
             wait-for-service-stability: true
             force-new-deployment: true
-        - name: Send mail
-          if: always()
-          uses: dawidd6/action-send-mail@v2
+        - name: Send email
+          uses: dawidd6/action-send-mail@v3.7.1
           with:
             server_address: smtp.gmail.com
             server_port: 465
