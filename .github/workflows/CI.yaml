@@ -2,9 +2,9 @@ name: Lint the code, run tests, create release, build and push to Docker repo
 
 on:
   push:
-    branches:
-      - 'main'
-      - '*'
+    paths-ignore:
+      - '!.github/*'
+      - '!.gitignore'
 
 jobs:
   # Run code tests before building the image, to ensure it is good to go
