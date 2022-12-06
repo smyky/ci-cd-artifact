@@ -38,6 +38,7 @@ jobs:
     - name: Test with unittest
       run: |
         python -m unittest discover
+# Define version, create a release and push container
   create_version:
       name: Create release and push
       if: github.ref == 'refs/heads/main'
