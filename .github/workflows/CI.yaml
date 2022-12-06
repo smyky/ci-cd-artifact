@@ -72,3 +72,17 @@ jobs:
             password: ${{ secrets.DOCKERHUB_PASSWORD }}
             repository: ${{ secrets.DOCKERHUB_REPOSITORY }}
             tags: latest, ${{ steps.versioning.outputs.version }}
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: us-east-1
+        - name: Run ECS Task
+          uses: researchsquare/run-ecs-task-action@v1
+          with:
+            task-definition: ci-cd
+            service: ci-cd-task
+            cluster: ci-cd-cluster-smyky
+            wait-for-service-stability: true
+            uses: aws-actions/amazon-ecs-deploy-task-definition@v1
