@@ -1,12 +1,10 @@
 <html> <body>
 
 <p>This is an automatic email.<br>
-Your ${{ github.job }} job completed.<br>
-Status of job: ${{ job.status }}
+Your CI/CD job completed.<br>
 
 </p>
 
 
-Repository: ${{ github.repository }}
-
+Repository: ci-cd-artifact
 </body> </html>
