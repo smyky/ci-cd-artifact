@@ -3,7 +3,7 @@ name: Lint the code, run tests, create release, build and push to Docker repo
 on:
   push:
     paths-ignore:
-      - '.github/*'
+      - '.github/workflows/CI.yaml'
       - '.gitignore'
 
 jobs:
