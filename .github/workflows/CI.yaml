@@ -3,6 +3,7 @@ on:
   push:
     paths-ignore:
       - '.github/workflows/CI.yaml'
+      - '.github/workflows/test.yaml'
       - '.gitignore'
 
 jobs:
