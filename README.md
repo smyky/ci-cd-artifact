@@ -4,6 +4,17 @@
 
 # CD/CI Tutorial Sample Application
 
+## CI/CD workflow
+Versions and release created automatically using semantic versioning rule. 
+When pushing to main branch or merging pull request make sure to follow the rules for commit messages:
+* CHANGE: Major change. New major version will be created with latest changes.
+* feat: Minor change. Minor change with feature will be created. 
+* any other commits to main branch considered as patches. 
+
+For any work that should not be released yet, use separate branches. 
+
+For semantic versioning used: https://github.com/marketplace/actions/git-semantic-version
+
 ## Description
 
 This sample Python REST API application was written for a tutorial on implementing Continuous Integration and Delivery pipelines.
