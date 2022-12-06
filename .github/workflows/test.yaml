@@ -1,4 +1,4 @@
-name: CI/CD workflow
+name: test email
 on:
   push:
     paths-ignore:
