@@ -48,27 +48,27 @@ jobs:
           uses: actions/checkout@v2
           with:
             fetch-depth: 0
-        - name: Semantic versioning
-          id: versioning
-          uses: PaulHatch/semantic-version@v4.0.2
+        - name: Setup Node.js
+          uses: actions/setup-node@v1
           with:
-            branch: main
-            major_pattern: "CHANGE:"
-            tag_prefix: ""
-            minor_pattern: "feat:"
-            format: "${major}.${minor}.${patch}"
-        - name: Create Release
-          uses: actions/create-release@v1
+            node-version: 13
+        - name: Add plugin for conventional commits
+          run: npm install conventional-changelog-conventionalcommits
+          working-directory: ./.github/workflows
+        - name: Release to GitHub
+          working-directory: ./.github/workflows
           env:
-            GITHUB_TOKEN: ${{ secrets.github_token }}
-          with:
-            tag_name: ${{ steps.versioning.outputs.version }}
-            release_name: ${{ steps.versioning.outputs.version }}
-        - name: Build and push image to the Docker Hub
-          uses: docker/build-push-action@v1
-          with:
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_PASSWORD }}
-            repository: ${{ secrets.DOCKERHUB_REPOSITORY }}
-            tags: latest, ${{ steps.versioning.outputs.version }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GIT_AUTHOR_NAME: enter author name
+            GIT_AUTHOR_EMAIL: smyky
+            GIT_COMMITTER_NAME: smyky
+            GIT_COMMITTER_EMAIL: sofiiamyk
+          run: npx semantic-release
+#         - name: Build and push image to the Docker Hub
+#           uses: docker/build-push-action@v1
+#           with:
+#             username: ${{ secrets.DOCKERHUB_USERNAME }}
+#             password: ${{ secrets.DOCKERHUB_PASSWORD }}
+#             repository: ${{ secrets.DOCKERHUB_REPOSITORY }}
+#             tags: latest, ${{ steps.versioning.outputs.version }}
           
