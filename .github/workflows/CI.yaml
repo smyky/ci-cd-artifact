@@ -78,11 +78,19 @@ jobs:
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws-region: us-east-1
-        - name: Run ECS Task
-          uses: researchsquare/run-ecs-task-action@v1
+        - name: Deploy Amazon ECS task definition
+          uses: aws-actions/amazon-ecs-deploy-task-definition@v1
           with:
-            task-definition-arn: arn:aws:ecs:us-east-1:048558755265:task-definition/ci-cd
-            count: 1
+            task-definition: arn:aws:ecs:us-east-1:048558755265:task-definition/ci-cd
+            service: ci-cd-task
             cluster: ci-cd-cluster-smyky
-            wait-for-task-completion: true
+            wait-for-service-stability: true
+            force-new-deployment: true
+#         - name: Run ECS Task
+#           uses: researchsquare/run-ecs-task-action@v1
+#           with:
+#             task-definition-arn: arn:aws:ecs:us-east-1:048558755265:task-definition/ci-cd
+#             count: 1
+#             cluster: ci-cd-cluster-smyky
+#             wait-for-task-completion: true
  #           overrides: true
