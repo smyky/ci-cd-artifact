@@ -85,4 +85,4 @@ jobs:
             count: 1
             cluster: ci-cd-cluster-smyky
             wait-for-task-completion: true
-            overrides: true
+ #           overrides: true
