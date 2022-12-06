@@ -44,14 +44,17 @@ jobs:
       needs: [build]
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v3
-        - run: git fetch --prune --unshallow --tag
+        - name: Checkout
+          uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
         - name: Semantic versioning
           id: versioning
           uses: PaulHatch/semantic-version@v4.0.2
           with:
             branch: main
             major_pattern: "CHANGE:"
+            tag_prefix: ""
             minor_pattern: "feat:"
             format: "${major}.${minor}.${patch}"
         - name: Create Release
