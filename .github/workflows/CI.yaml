@@ -85,11 +85,13 @@ jobs:
             cluster: ci-cd-cluster-smyky
             wait-for-service-stability: true
             force-new-deployment: true
-#         - name: Run ECS Task
-#           uses: researchsquare/run-ecs-task-action@v1
-#           with:
-#             task-definition-arn: arn:aws:ecs:us-east-1:048558755265:task-definition/ci-cd
-#             count: 1
-#             cluster: ci-cd-cluster-smyky
-#             wait-for-task-completion: true
- #           overrides: true
+        - name: Send mail
+          if: always()
+          uses: dawidd6/action-send-mail@v2
+          with:
+            server_address: smtp.gmail.com
+            server_port: 465
+            subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+            body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
+            to: aws1sofiiamyk@gmail.com 
+            from: Sofiia Myk
