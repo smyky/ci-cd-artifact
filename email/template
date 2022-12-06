@@ -1,0 +1,12 @@
+<html> <body>
+
+<p>This is an automatic email.<br>
+Your ${{ github.job }} job completed.<br>
+Status of job: ${{ job.status }}
+
+</p>
+
+
+Repository: ${{ github.repository }}
+
+</body> </html>
