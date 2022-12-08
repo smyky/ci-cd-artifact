@@ -3,7 +3,7 @@ on:
   push:
     paths-ignore:
       - '.github/workflows/CI.yaml'
-      - '.github/workflows/notify.yaml'
+      - '.github/workflows/notify.yml'
       - '.github/workflows/sonar.yaml'
       - '.gitignore'
       - 'email/template'
