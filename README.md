@@ -1,4 +1,5 @@
 [![CI/CD workflow](https://github.com/smyky/ci-cd-artifact/actions/workflows/CI.yaml/badge.svg)](https://github.com/smyky/ci-cd-artifact/actions/workflows/CI.yaml)
+[![Sonar](https://github.com/smyky/ci-cd-artifact/actions/workflows/sonar.yaml/badge.svg)](https://github.com/smyky/ci-cd-artifact/actions/workflows/sonar.yaml)
 # CD/CI Tutorial Sample Application
 
 ## CI/CD workflow
