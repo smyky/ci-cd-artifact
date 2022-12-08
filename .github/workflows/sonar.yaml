@@ -23,6 +23,8 @@ jobs:
             -Dsonar.sourceEncoding=UTF-8
             -Dsonar.python.version=3.8
             -Dsonar.dynamicAnalysis=reuseReports
+            -Dsonar.python.coverage.reportPaths=cover_xml/*coverage*xml
+            -Dsonar.python.xunit.reportPath=test-reports/*cover_report*xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
