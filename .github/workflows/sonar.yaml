@@ -18,7 +18,7 @@ jobs:
         with:
           args: >
             -Dsonar.organization=smyky
-            -Dsonar.projectKey=ci-cd-artifact
+            -Dsonar.projectKey=smyky_ci-cd-artifact
             -Dsonar.tests=tests
             -Dsonar.sourceEncoding=UTF-8
             -Dsonar.python.version=3.8
