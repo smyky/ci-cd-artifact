@@ -74,37 +74,19 @@ jobs:
             password: ${{ secrets.DOCKERHUB_PASSWORD }}
             repository: ${{ secrets.DOCKERHUB_REPOSITORY }}
             tags: latest, ${{ steps.versioning.outputs.version }}
-        - name: Configure AWS credentials
-          uses: aws-actions/configure-aws-credentials@v1
-          with:
-            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            aws-region: us-east-1
-        - name: Deploy Amazon ECS task definition
-          uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-          with:
-            task-definition: task-definition/ci-cd.json
-            service: ci-cd-task
-            cluster: ci-cd-cluster-smyky
-            wait-for-service-stability: true
-            force-new-deployment: true
+#         - name: Configure AWS credentials
+#           uses: aws-actions/configure-aws-credentials@v1
+#           with:
+#             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#             aws-region: us-east-1
+#         - name: Deploy Amazon ECS task definition
+#           uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+#           with:
+#             task-definition: task-definition/ci-cd.json
+#             service: ci-cd-task
+#             cluster: ci-cd-cluster-smyky
+#             wait-for-service-stability: true
+#             force-new-deployment: true
             
-#   send_email: 
-#     name: Send email
-#     if: always()
-#     needs: [build,create_version]
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#       - name: Send email
-#         uses: dawidd6/action-send-mail@v3.7.1
-#         with:
-#           server_address: smtp.gmail.com
-#           server_port: 465
-#           username: ${{ secrets.EMAIL_USERNAME }}
-#           password: ${{ secrets.EMAIL_PASSWORD }}
-#           subject: CI/CD job status - ${{ job.status }}
-#           html_body: file://email/template
-#           to: aws1sofiiamyk@gmail.com 
-#           from: Sofiia Myk
+
