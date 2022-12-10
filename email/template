@@ -1,7 +1,8 @@
 <html> <body>
 
 <p>This is an automatic email.<br>
-Your CI/CD job completed.<br>
+CI/CD job of your ${{github.repository}} completed. <br>
+
 
 </p>
 
