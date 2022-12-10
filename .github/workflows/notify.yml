@@ -19,12 +19,10 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: CI/CD job status - ${{ github.event.workflow_run.conclusion }}
-  #        html_body: file://email/template
           html_body: |
             <p> Status: ${{ github.event.workflow_run.conclusion }} </p>
             <p> Job url: ${{ github.event.workflow_run.html_url }}</p>
             <p> Branch: ${{ github.event.workflow_run.head_branch }}</p>
-            <p> Started by: ${{ github.event.workflow_run.triggering_actor }}
             <p> Repository: ${{ github.repository }}</p>
           to: aws1sofiiamyk@gmail.com 
           from: Sofiia Myk
