@@ -25,4 +25,4 @@ jobs:
             <p> Branch: ${{ github.event.workflow_run.head_branch }}</p>
             <p> Repository: ${{ github.repository }}</p>
           to: aws1sofiiamyk@gmail.com 
-          from: Sofiia Myk
+          from: GitHub actions
