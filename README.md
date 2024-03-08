@@ -3,6 +3,7 @@
 # CD/CI Tutorial Sample Application
 
 ## CI/CD workflow
+## TEST update
 Versions and release created automatically using semantic versioning rule. 
 When pushing to main branch or merging pull request make sure to follow the rules for commit messages:
 * CHANGE: Major change. New major version will be created with latest changes.
