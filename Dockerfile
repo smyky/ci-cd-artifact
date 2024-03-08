@@ -2,8 +2,8 @@
 FROM centos:latest
 
 # Install necessary packages
-RUN yum -y update && \
-    yum -y install wget tar gcc make git
+RUN yum -y update 
+RUN yum -y install wget 
 
 # Install Go
 ENV GOLANG_VERSION 1.17.5
