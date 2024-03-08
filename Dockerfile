@@ -1,20 +1,28 @@
-FROM ubuntu:18.04
+# Use CentOS as base image
+FROM centos:latest
 
-RUN apt-get update && \
-    apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -yq libpq-dev gcc python3.8 python3-pip && \
-    apt-get clean
+# Install necessary packages
+RUN yum -y update && \
+    yum -y install wget tar gcc make git
 
-WORKDIR /sample-app
+# Install Go
+ENV GOLANG_VERSION 1.17.5
+RUN wget -q https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go$GOLANG_VERSION.linux-amd64.tar.gz && \
+    rm -f go$GOLANG_VERSION.linux-amd64.tar.gz
 
-COPY . /sample-app/
+ENV PATH $PATH:/usr/local/go/bin
 
-RUN pip3 install -r requirements.txt && \
-    pip3 install -r requirements-server.txt
+# Set Go environment variables
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:$PATH
 
-ENV LC_ALL="C.UTF-8"
-ENV LANG="C.UTF-8"
+# Create app directory
+WORKDIR /app
 
-EXPOSE 8000/tcp
+# Copy the source code into the container
+COPY main.go .
 
-CMD ["/bin/sh", "-c", "flask db upgrade && gunicorn app:app -b 0.0.0.0:8000"]
+# Install dependencies
+RUN go mod init main.go && \
+    go mod tidy
