@@ -2,7 +2,7 @@
 FROM centos:7
 
 # Install necessary packages
-RUN yum -y update 
+#RUN yum -y update 
 RUN yum -y install wget 
 
 # Install Go
