@@ -1,8 +1,8 @@
 # Use CentOS as base image
-FROM centos:latest
+FROM centos:7
 
 # Install necessary packages
-#RUN yum -y update 
+RUN yum -y update 
 RUN yum -y install wget 
 
 # Install Go
