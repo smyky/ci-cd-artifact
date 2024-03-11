@@ -53,7 +53,7 @@ RUN go mod init geolocation && \
     go mod tidy && \
     go build -o geolocation
 
-COPY /root/geolocation/geolocation /bin/geolocation
+RUN cp /root/geolocation/geolocation /bin/geolocation
 
 USER nobody
 
