@@ -57,5 +57,4 @@ RUN cp /root/geolocation/geolocation /bin/geolocation
 
 USER nobody
 
-ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["/bin/geolocation"]
