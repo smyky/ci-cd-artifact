@@ -1,12 +1,22 @@
 name: CI/CD workflow
 on:
-  push:
-    paths-ignore:
-      - '.github/workflows/CI.yaml'
-      - '.github/workflows/notify.yml'
-      - '.github/workflows/sonar.yaml'
-      - '.gitignore'
-      - 'email/template'
+  workflow_dispatch:
+    inputs:
+      image:
+        description: Choose an Image
+        required: true
+        type: choice
+        options:
+        - test
+        - geolocation
+      tag:
+        description: Enter the Tag, default is latest
+        type: string
+        default: 'latest'
+        required: false
+      version:
+        description: Image version to put in Tar (ex - v1, 2.3, 10.0.1 )
+        required: true
 
 jobs:
   # Run code tests before building the image, to ensure it is good to go
@@ -39,7 +49,7 @@ jobs:
 # Define version, create a release and push container
   create_version:
       name: Create release and push
-      if: github.ref == 'refs/heads/main'
+      if: github.event.inputs.image != 'test'
       needs: [build]
       runs-on: ubuntu-latest
       steps:
