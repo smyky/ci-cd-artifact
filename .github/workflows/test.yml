@@ -1,0 +1,35 @@
+name: Run job if any dependency succeeds
+on:
+  push:
+    branches: [ main ]
+jobs:
+  dep1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run FAILING script
+        run: exit 1 
+  dep2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run SUCCESS script
+        run: echo Success
+  job:
+    runs-on: ubuntu-latest
+    if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
+    needs: [dep1, dep2]
+    steps:
+      - name: Hello World        
+        env:
+          NEEDS: ${{ toJSON(needs) }}     
+        run: |
+          echo "$NEEDS"
+  nextjob:
+    runs-on: ubuntu-latest
+    if: ${{ always() }}
+    needs: [job]
+    steps:
+      - name: Hello World        
+        env:
+          NEEDS: ${{ toJSON(needs) }}     
+        run: |
+          echo "$NEEDS"
