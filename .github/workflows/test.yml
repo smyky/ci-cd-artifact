@@ -17,6 +17,7 @@ jobs:
   job:
     runs-on: ubuntu-latest
     if: always() && (needs.dep1.result == 'success' || needs.dep2.result == 'success')
+    needs: [dep1, dep2]
     steps:
       - name: Hello World        
         env:
