@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run FAILING script
-        run:  exit 1
+        run:  echo Success
   dep2:
     runs-on: ubuntu-latest
     steps:
@@ -24,10 +24,15 @@ jobs:
           NEEDS: ${{ toJSON(needs) }}     
         run: |
           echo "$NEEDS"
+  job2: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run SUCCESS script
+        run:  exit 1
   nextjob:
     runs-on: ubuntu-latest
-    if: ${{ always() }}
-    needs: [job]
+    if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
+    needs: [job, job2]
     steps:
       - name: Hello World        
         env:
