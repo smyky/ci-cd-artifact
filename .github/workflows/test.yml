@@ -2,6 +2,7 @@ name: Run job if any dependency succeeds
 on:
   push:
     branches: [ main ]
+  
 jobs:
   dep1:
     runs-on: ubuntu-latest
@@ -15,7 +16,7 @@ jobs:
         run: echo Success
   job:
     runs-on: ubuntu-latest
-    if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
+    if: always() && (needs.dep1.result == 'success' || needs.dep2.result == 'success') }}
     needs: [dep1, dep2]
     steps:
       - name: Hello World        
