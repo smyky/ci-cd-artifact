@@ -31,7 +31,7 @@ jobs:
         run:  exit 1
   nextjob:
     runs-on: ubuntu-latest
-    if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
+    if: ${{ always() && (needs.job.result == 'success' || needs.job2.result == 'success') }}
     needs: [job, job2]
     steps:
       - name: Hello World        
