@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run SUCCESS script
-        run:  exit 1
+        run:  echo Success
   job:
     runs-on: ubuntu-latest
     if: always() && (needs.dep1.result == 'success' || needs.dep2.result == 'success')
